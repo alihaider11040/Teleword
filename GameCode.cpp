@@ -9,13 +9,11 @@ using namespace std;
 using namespace chrono;
 void printarray(char A[500], int x) {
 	x = strlen(A);
-	for (int i = 0; i < x; i++)
-	{
+	for (int i = 0; i < x; i++) {
 		cout << A[i];
 	}
 }
-void gotoxy(int xpos, int ypos, int col, char ch)
-{
+void gotoxy(int xpos, int ypos, int col, char ch) {
 	COORD scrn;
 	HANDLE hOuput = GetStdHandle(STD_OUTPUT_HANDLE);
 	scrn.X = xpos; scrn.Y = ypos;
@@ -29,10 +27,8 @@ void gotoxy(int xpos, int ypos, int col, char ch)
 	SetConsoleWindowInfo(screen, TRUE, &windowSize);
 }
 void UTLS(char A[15][15]) {
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
+	for (int i = 0; i < 15; i++) {
+		for (int j = 0; j < 15; j++) {
 			A[i][j] = A[i][j] + 32;
 
 		}
@@ -43,41 +39,32 @@ bool rowR(char Grid[15][15], char temp[50], int c[15][15], int(&rC)[15], int(&cC
 	bool notMatch = true;
 	int x, z = 0, j1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 				j1 = j;
 				z++;
 				if (j != 0) { j--; };
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if (temp[z] == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if (temp[z] == Grid[i][j]) {
 						notMatch = false;
 
 					}
-					else
-					{
+					else {
 						notMatch = true;
 					}
 					z++;  j--;
 				}
-				if (notMatch == false)
-				{
+				if (notMatch == false) {
 
-					for (int t = j1; t > j; t--)
-					{
+					for (int t = j1; t > j; t--) {
 						c[i][t]++; cC[t]++;
 					}
 					rC[i]++;
 					//printarray(temp, x); cout << '\n';
 				}
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					j = j1;
 					z = 0;
 				}
@@ -91,38 +78,29 @@ bool rowF(char Grid[15][15], char temp[50], int c[15][15], int(&rC)[15], int(&cC
 		bool notMatch = true;
 		int x, z = 0, j1;
 		x = strlen(temp);
-		for (int i = 0; notMatch == true && i < 15; i++)
-		{
-			for (int j = 0; j < 15; j++)
-			{
-				if (temp[z] == Grid[i][j])
-				{
+		for (int i = 0; notMatch == true && i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				if (temp[z] == Grid[i][j]) {
 					j1 = j;
 					z++; j++;
 					notMatch = false;
-					for (int k = 1; notMatch == false && k < x; k++)
-					{
-						if ((temp[z]) == Grid[i][j])
-						{
+					for (int k = 1; notMatch == false && k < x; k++) {
+						if ((temp[z]) == Grid[i][j]) {
 							notMatch = false;
 						}
-						else
-						{
+						else {
 							notMatch = true;
 						}
 						z++, j++;
 					}
-					if (notMatch == false)
-					{
-						for (int t = j1; t < j; t++)
-						{
+					if (notMatch == false) {
+						for (int t = j1; t < j; t++) {
 							c[i][t]++; cC[t]++;
 						}
 						rC[i]++;
 						//printarray(temp, x); cout << '\n';
 					}
-					if (notMatch == true)
-					{
+					if (notMatch == true) {
 						j = j1;
 						z = 0;
 					}
@@ -136,37 +114,28 @@ bool columnD(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], int(
 	bool notMatch = true;
 	int x, z = 0, i1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; notMatch == true && j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; notMatch == true && j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 				i1 = i;
 				z++; i++;
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if (temp[z] == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if (temp[z] == Grid[i][j]) {
 						notMatch = false;
 					}
-					else
-					{
+					else {
 						notMatch = true;
 					}
 					z++, i++;
 				}
-				if (notMatch == false)
-				{
-					for (int t = i1; t < i; t++)
-					{
+				if (notMatch == false) {
+					for (int t = i1; t < i; t++) {
 						c[t][j]++; rC[t]++;
 					}//printarray(temp, x); cout << '\n';
 					cC[j]++;
 				}
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					i = i1;
 					z = 0;
 				}
@@ -179,39 +148,30 @@ bool columnU(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], int(
 	bool notMatch = true;
 	int x, z = 0, i1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; notMatch == true && j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; notMatch == true && j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 
 				i1 = i;
 				z++; i--;
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if ((temp[z]) == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if ((temp[z]) == Grid[i][j]) {
 						notMatch = false;
 					}
-					else
-					{
+					else {
 						notMatch = true;
 					}
 					z++, i--;
 				}
-				if (notMatch == false)
-				{
+				if (notMatch == false) {
 
-					for (int t = i1; t > i; t--)
-					{
+					for (int t = i1; t > i; t--) {
 						c[t][j]++; rC[t]++;
 					}//printarray(temp, x); cout << '\n';
 					cC[j]++;
 				}
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					i = i1;
 					z = 0;
 				}
@@ -224,41 +184,32 @@ bool DiagonalF(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], in
 	bool notMatch = true;
 	int x, z = 0, j1, i1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; notMatch == true && j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; notMatch == true && j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 				j1 = j;
 				i1 = i;
 				z++; j++; i++;
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if ((temp[z]) == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if ((temp[z]) == Grid[i][j]) {
 						notMatch = false;
 					}
-					else
-					{
+					else {
 
 						notMatch = true;
 					}
 					z++, j++; i++;
 				}
-				if (notMatch == false)
-				{
-					for (int t = j1, s = i1; t < j && s < i; t++, s++)
-					{
+				if (notMatch == false) {
+					for (int t = j1, s = i1; t < j && s < i; t++, s++) {
 						c[s][t]++;
 						cC[t]++;
 						rC[s]++;
 					}//printarray(temp, x); cout << '\n';
 
 				}
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					j = j1; i = i1;
 					z = 0;
 				}
@@ -271,44 +222,34 @@ bool DiagonalR(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], in
 	bool notMatch = true;
 	int x, z = 0, j1, i1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; notMatch == true && j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; notMatch == true && j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 				j1 = j;
 				i1 = i;
 				z++;
-				if (i != 0 && j != 0)
-				{
+				if (i != 0 && j != 0) {
 					j--; i--;
 				}
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if (temp[z] == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if (temp[z] == Grid[i][j]) {
 						notMatch = false;
 					}
-					else
-					{
+					else {
 						notMatch = true;
 					}
 					z++; i--; j--;
 				}
-				if (notMatch == false)
-				{
-					for (int t = j1, s = i1; t > j && s > i; t--, s--)
-					{
+				if (notMatch == false) {
+					for (int t = j1, s = i1; t > j && s > i; t--, s--) {
 						c[s][t]++;
 						rC[s]++;
 						cC[t]++;
 					}//printarray(temp, x); cout << '\n';
 
 				}
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					j = j1; i = i1;
 					z = 0;
 				}
@@ -321,44 +262,34 @@ bool Diagonal1R(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], i
 	bool notMatch = true;
 	int x, z = 0, j1, i1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; notMatch == true && j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; notMatch == true && j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 				j1 = j;
 				i1 = i;
 				z++;
-				if (j != 0) { j--; }if (i != 14)
-				{
+				if (j != 0) { j--; }if (i != 14) {
 
 					i++;
 				}
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if (temp[z] == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if (temp[z] == Grid[i][j]) {
 						notMatch = false;
 					}
-					else
-					{
+					else {
 						notMatch = true;
 					}
 					z++, j--; i++;
 				}
-				if (notMatch == false)
-				{
-					for (int t = j1, s = i1; t > j && s < i; t--, s++)
-					{
+				if (notMatch == false) {
+					for (int t = j1, s = i1; t > j && s < i; t--, s++) {
 						c[s][t]++;
 						cC[t]++;
 						rC[s]++;
 					}//printarray(temp, x); cout << '\n';
 				}
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					j = j1; i = i1;
 					z = 0;
 				}
@@ -371,40 +302,31 @@ bool Diagonal1F(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], i
 	bool notMatch = true;
 	int x, z = 0, j1, i1;
 	x = strlen(temp);
-	for (int i = 0; notMatch == true && i < 15; i++)
-	{
-		for (int j = 0; notMatch == true && j < 15; j++)
-		{
-			if (temp[z] == Grid[i][j])
-			{
+	for (int i = 0; notMatch == true && i < 15; i++) {
+		for (int j = 0; notMatch == true && j < 15; j++) {
+			if (temp[z] == Grid[i][j]) {
 				j1 = j;
 				i1 = i;
 				z++; j++; i--;
 				notMatch = false;
-				for (int k = 1; notMatch == false && k < x; k++)
-				{
-					if (temp[z] == Grid[i][j])
-					{
+				for (int k = 1; notMatch == false && k < x; k++) {
+					if (temp[z] == Grid[i][j]) {
 						notMatch = false;
 					}
-					else
-					{
+					else {
 						notMatch = true;
 					}
 					z++, j++; i--;
 				}
-				if (notMatch == false)
-				{
-					for (int t = j1, s = i1; t < j && s > i; t++, s--)
-					{
+				if (notMatch == false) {
+					for (int t = j1, s = i1; t < j && s > i; t++, s--) {
 						c[s][t]++;
 						cC[t]++;
 						rC[s];
 					}
 				}
 
-				if (notMatch == true)
-				{
+				if (notMatch == true) {
 					j = j1; i = i1;
 					z = 0;
 				}
@@ -416,17 +338,14 @@ bool Diagonal1F(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], i
 void UTLA(char A[50]) {
 	int x = 0;
 	x = strlen(A);
-	for (int i = 0; i < x; i++)
-	{
-		if (A[i] > 64 && A[i] < 91)
-		{
+	for (int i = 0; i < x; i++) {
+		if (A[i] > 64 && A[i] < 91) {
 			A[i] = A[i] + 32;
 		}
 	}
 }
 void intake(int grid[15][15]) {
-	for (int i = 0; i < 15; i++)
-	{
+	for (int i = 0; i < 15; i++) {
 		for (int j = 0; j < 15; j++) {
 
 			grid[i][j] = 0;
@@ -438,16 +357,11 @@ void FindIT(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], int(&
 	if (rowF(Grid, temp, c, rC, cC)) {
 		if (rowR(Grid, temp, c, rC, cC)) {
 			if (columnD(Grid, temp, c, cC, rC)) {
-				if (columnU(Grid, temp, c, cC, rC))
-				{
-					if (DiagonalF(Grid, temp, c, cC, rC))
-					{
-						if (DiagonalR(Grid, temp, c, cC, rC))
-						{
-							if (Diagonal1F(Grid, temp, c, cC, rC))
-							{
-								if (Diagonal1R(Grid, temp, c, cC, rC))
-								{
+				if (columnU(Grid, temp, c, cC, rC)) {
+					if (DiagonalF(Grid, temp, c, cC, rC)) {
+						if (DiagonalR(Grid, temp, c, cC, rC)) {
+							if (Diagonal1F(Grid, temp, c, cC, rC)) {
+								if (Diagonal1R(Grid, temp, c, cC, rC)) {
 								}
 							}
 						}
@@ -459,24 +373,18 @@ void FindIT(char Grid[15][15], char temp[50], int c[15][15], int(&cC)[15], int(&
 	}
 }
 void coloring(char Grid[15][15], int c[15][15]) {
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
+	for (int i = 0; i < 15; i++) {
+		for (int j = 0; j < 15; j++) {
 			int x = 0;
 			if (c[i][j] == 0) { x = 15; }
-			if (c[i][j] == 1)
-			{
+			if (c[i][j] == 1) {
 				x = 14;
 			}
-			else
-			{
-				if (c[i][j] == 2)
-				{
+			else {
+				if (c[i][j] == 2) {
 					x = 1;
 				}
-				else
-				{
+				else {
 					if (c[i][j] > 2) { x = 4; }
 				}
 			}
@@ -488,10 +396,8 @@ void coloring(char Grid[15][15], int c[15][15]) {
 	}
 }
 void print(char A[15][15]) {
-	for (int i = 0; i < 15; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
+	for (int i = 0; i < 15; i++) {
+		for (int j = 0; j < 15; j++) {
 
 			cout << A[i][j] << "  ";
 
@@ -503,8 +409,7 @@ void steps(char Grid[15][15], char arr[500], int c[15][15], char GridU[15][15], 
 	char g;
 	int x;
 	x = strlen(arr);
-	for (int i = 0; i < x; i++)
-	{
+	for (int i = 0; i < x; i++) {
 		char temp[50];
 		{
 			int j = 0;
@@ -527,8 +432,7 @@ void statistics(char Grid[15][15], char arr[500], int c[15][15], char GridU[15][
 	int RR = 0, RF = 0, CD = 0, CU = 0, DF = 0, DR = 0, D1F = 0, D1R = 0, x = 0;
 	x = strlen(arr);
 	int maxLen = 0, minLen = 100, sum = 0, count = 0;
-	for (int i = 0; i < x; i++)
-	{
+	for (int i = 0; i < x; i++) {
 		char temp[50];
 
 		int j = 0;
@@ -560,16 +464,14 @@ void statistics(char Grid[15][15], char arr[500], int c[15][15], char GridU[15][
 		<< "Vertical: " << (CD + CU) << "(" << CD << "," << CU << ")" << " "
 		<< "Diagonals: " << (DF + DR + D1F + D1R) << "(" << (DF + D1F) << "," << (D1R + DR) << ")" << '\n';
 	int scater = 0;
-	for (int i = 0; i < 15; i++)
-	{
+	for (int i = 0; i < 15; i++) {
 		for (int j = 0; j < 15; j++) {
 			if (c[i][j] == 0) { j = 14; scater++; }
 		}
 	}
 	cout << "Teleword Scatter: " << scater << '\n';
 	int maxR = 0, maxC = 0, rmax = 0, cmax = 0;
-	for (int i = 0; i < 8; i++)
-	{
+	for (int i = 0; i < 8; i++) {
 		if (maxR < rC[i]) { rmax = i; maxR = rC[i]; }
 		if (maxC < cC[i]) { cmax = i; maxC = cC[i]; }
 	}
@@ -578,11 +480,9 @@ void statistics(char Grid[15][15], char arr[500], int c[15][15], char GridU[15][
 
 }
 void ans(char grid[15][15], int c[15][15]) {
-	for (int i = 0; i < 15; i++)
-	{
+	for (int i = 0; i < 15; i++) {
 		for (int j = 0; j < 15; j++) {
-			if (c[i][j] == 0)
-			{
+			if (c[i][j] == 0) {
 				cout << grid[i][j];
 			}
 
@@ -591,18 +491,14 @@ void ans(char grid[15][15], int c[15][15]) {
 	cout << '\n';
 }
 int main() {
-	ifstream file("C:\\Users\\Ali Haider\\Desktop\\teleword_10.txt");
-	if (file.fail())
-	{
+	ifstream file("teleword_10.txt");
+	if (file.fail()) {
 		cout << "ops";
 	}
-	else
-	{
+	else {
 		char Grid[15][15], arr[500];
-		for (int i = 0; i < 15; i++)
-		{
-			for (int j = 0; j < 15; j++)
-			{
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
 				file >> Grid[i][j];
 			}
 		}
@@ -628,8 +524,7 @@ int main() {
 		system("cls");
 		auto start = high_resolution_clock::now();
 
-		for (int i = 0; i < x; i++)
-		{
+		for (int i = 0; i < x; i++) {
 			char temp[50];
 
 			int j = 0;
@@ -650,8 +545,7 @@ int main() {
 			cout << '\n';
 			ans(Grid, color);
 		}
-		if (q == 't')
-		{
+		if (q == 't') {
 			intake(color);
 			steps(Grid, arr, color, GridU, rC, cC);
 			cout << '\n';
@@ -664,16 +558,7 @@ int main() {
 				<< duration.count() << " microseconds" << endl;
 			statistics(Grid, arr, color, GridU, cC, rC);
 		}
-		for (int i = 0; i < 8; i++)
-		{
-			cout << cC[i] << "   ";
-		}
-
-		cout << '\n' << '\n';
-		for (int i = 0; i < 8; i++)
-		{
-			cout << rC[i] << "   ";
-		}
+	
 
 		cout << endl;
 		system("pause");
