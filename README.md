@@ -13,3 +13,5 @@ It provide 3 type of search:
                 
 You must provide teleword.txt file with words grid and after one line blank there must be words seperated by comma and last word having full stop at end.                
          
+# DEMO:
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/WVQy3xq/ezgif-com-gif-maker.gif" alt="ezgif-com-gif-maker" border="0"></a>
